@@ -5,8 +5,8 @@ const createLibro = async (atributosLibro) => {
     try {
         const newLibro = await Libro.create(atributosLibro);
         return newLibro;
-    } catch (error) {
-        throw error;
+    }catch (error) {
+    throw error;
     }
 };
 
@@ -16,7 +16,7 @@ const getLibro = async (id) => {
         if (libro) {
             return libro;
         } else {
-            throw new Error("Usuario no encontrado");
+            throw new Error("Libro no encontrado");
         }
     } catch (error) {
         throw error;
