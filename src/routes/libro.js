@@ -8,12 +8,12 @@ router.get('/', async (req, res) => {
     try {
         let libros;
         if (Object.keys(req.query).length !== 0) {
-            users = await libroService.getLibros({
+            libros = await libroService.getLibros({
                 ...(titulo && { titulo }),
                 ...(autor && { autor }),
         }); // Esto sólo va a agregar los campos si vinieron en la query
         } else {
-            users = await libroService.getLibros();
+            libros = await libroService.getLibros();
         }
 
         res.status(200).json(libros);
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 
 
 router.get("/:idLibro", async (req, res) => {
-    const reqLibro = req.libro;
+    // const reqLibro = req.libro;
     const idLibro = req.params.idLibro;
     try {
         const libro = await libroService.getLibro(idLibro);
