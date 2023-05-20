@@ -1,3 +1,11 @@
-const { getLibro, getLibros, createLibro, updateLibro, deleteLibro } = require("./libro");
+const libroService = { getLibro, getLibros, createLibro, updateLibro, deleteLibro } = require("./libro");
+const libreriaService = { getlibreria, getlibrerias, createlibreria, updatelibreria, deletelibreria } = require("./libreria");
 
-module.exports = { getLibro, getLibros, createLibro, updateLibro, deleteLibro };
+//const libroService = {getLibro, getLibros, createLibro, updateLibro, deleteLibro};
+//const libreriaService = { getlibreria, getlibrerias, createlibreria, updatelibreria, deletelibreria }; 
+module.exports = {libreriaService, libroService}
+
+// module.exports = {
+//     libroService : {getLibro, getLibros, createLibro, updateLibro, deleteLibro},
+//     libreriaService: {getlibreria, getlibrerias, createlibreria, updatelibreria, deletelibreria},
+// };

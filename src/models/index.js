@@ -1,4 +1,4 @@
 const Libro = require("./libro");
-// const Ticket = require("./ticket");
+const Libreria = require("./libreria")
 
-module.exports = { Libro };
+module.exports = { Libro, Libreria};

@@ -1,3 +1,4 @@
-const libroRouter= require("./libro");
+const libroRouter = require('./libro');
+const libreriaRouter = require('./libreria');
 
-module.exports = {libroRouter}
+module.exports = {libroRouter, libreriaRouter}

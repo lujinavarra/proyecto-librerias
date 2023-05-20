@@ -1,3 +1,3 @@
 const libroController = require("./libro");
-
-module.exports = {libroController};
+const libreriaController = require("./libreria");
+module.exports = {libroController, libreriaController};

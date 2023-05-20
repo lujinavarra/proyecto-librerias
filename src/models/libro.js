@@ -4,7 +4,7 @@ const { sequelize } = require("../config/dbConfig");
 const Libro = sequelize.define('Libros',{
     isbn: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false, 
     },
     titulo: {
         type: DataTypes.STRING,

@@ -1,4 +1,6 @@
-const libroService = require('../services/libro');
+const services = require('../services')
+// const { libreriaService } = services;
+const {libroService} = services;
 
 const createLibro = async (req, res) => {
     const { isbn, titulo, autor, year, library } = req.body;
