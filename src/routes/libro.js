@@ -11,4 +11,6 @@ router.post ("/", libroController.createLibro);
 
 router.put("/:idLibro", libroController.updateLibro);
 
+router.delete("/:idLibro", libroController.deleteLibro);
+
 module.exports = router;

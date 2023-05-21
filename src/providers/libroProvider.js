@@ -12,6 +12,7 @@ const createLibro = async (atributosLibro) => {
 
 const getLibro = async (id) => {
     try {
+        // const libro = await Libro.findByPk(id, {paranoid: false}); si uno quiere ver los registros eliminados eliminamos esta linea
         const libro = await Libro.findByPk(id, { include: [{ all: true }] });
         if (libro) {
             return libro;
@@ -58,7 +59,7 @@ const updateLibro = async (idLibro, atributos) => {
 
 const deleteLibro = async (idLibro) => {
     try {
-        return Libro.destroy({ where: { id: idLibro } });
+        return await Libro.destroy({ where: { id: idLibro } });
     } catch (error) {
         throw error;
     }
