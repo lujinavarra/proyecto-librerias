@@ -1,4 +1,5 @@
 const libroController = require('./libro');
 const libreriaController = require('./libreria');
 const usuarioController = require('./usuario')
-module.exports = {libroController, libreriaController, usuarioController};
+const verificarUsuario = require('./verificarUsuario')
+module.exports = {libroController, libreriaController, usuarioController, verificarUsuario};

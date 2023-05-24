@@ -12,7 +12,9 @@ const createUsuario = async (atributosUsuario) => {
 
 const getUsuario = async (id) => {
     try {
-        const usuario = await Usuario.findByPk(id, { include: [{ all: true }] });
+        //User.findByPk(id, {attributes: {exclude: ['password']}})
+        //const usuario = await Usuario.findByPk(id, { include: [{ all: true }] });
+        const usuario = await Usuario.findByPk(id, {attributes: {exclude: ['password']}})
         if (usuario) {
             return usuario;
         } else {
@@ -29,7 +31,7 @@ const getUsuarios = async (condiciones) => {
         if (condiciones) {
             opciones = { ...opciones, where: { [Op.or]: condiciones } };
         }
-        const usuarios = await Usuario.findAll(opciones);
+        const usuarios = await Usuario.findAll({attributes: {exclude: ['password']}});
 
         if (usuarios) {
             return usuarios;
@@ -64,10 +66,25 @@ const deleteUsuario = async (idUsuario) => {
     }
 };
 
+const validateUsuario = async (username, password) => {
+    try {
+    const usuario = await Usuario.findOne({
+    where: { username, password },
+    });
+    if (usuario) {
+        return usuario;
+    } else {
+        return false;
+    }
+    }catch (error) {
+    throw error;
+    }
+};
 module.exports = {
     createUsuario,
     deleteUsuario,
     getUsuario,
     getUsuarios,
     updateUsuario,
+    validateUsuario
 };

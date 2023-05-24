@@ -4,24 +4,24 @@ const { sequelize } = require("../config/dbConfig");
 const Usuario = sequelize.define('Usuarios',{
     
     username: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING,
         unique: true,
         allowNull: false,
     },
     firstname: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     lastname: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     role: {
-        type: DataTypes.STRING(15),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     password: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING,
         allowNull: false,
     },
 },

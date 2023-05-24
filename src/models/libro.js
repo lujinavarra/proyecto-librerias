@@ -4,19 +4,19 @@ const  Libreria  = require('./libreria');
 
 const Libro = sequelize.define('Libros',{
     isbn: {
-        type: DataTypes.INTEGER(15),
+        type: DataTypes.INTEGER,
         allowNull: false, 
     },
     titulo: {
-        type: DataTypes.STRING(40),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     autor: {
-        type: DataTypes.STRING(40),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     year: {
-        type: DataTypes.STRING(4),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     library_id: {
@@ -34,7 +34,7 @@ const Libro = sequelize.define('Libros',{
 },
 );
 
-Libreria.hasMany(Libro, {foreignKey: 'library_id'});
-Libro.belongsTo(Libreria, {foreignKey: 'library_id'});
+Libreria.hasMany(Libro, {foreignKey: 'library_id', onDelete: 'CASCADE', hooks: true });
+Libro.belongsTo(Libreria, {foreignKey: 'library_id',onDelete: 'CASCADE', hooks: true });
 
 module.exports = Libro;

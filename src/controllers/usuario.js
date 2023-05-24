@@ -64,4 +64,14 @@ const updateUsuario = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
-module.exports = {createUsuario, getUsuarios, getUsuario, updateUsuario}
+
+const deleteUsuario = async (req, res) => {
+    const idUsuario = req.params.idUsuario;
+    try {
+        const usuario = await usuarioService.deleteUsuario(idUsuario);
+        res.status(200).json(usuario);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+module.exports = {createUsuario, getUsuarios, getUsuario, updateUsuario, deleteUsuario}

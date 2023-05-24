@@ -1,5 +1,5 @@
 const services = require('../services')
-const { libreriaService } = services;
+const { libreriaService, libroService } = services;
 
 const createlibreria = async (req, res) => {
     const { name, location, telefono} = req.body;
@@ -29,7 +29,6 @@ const getlibrerias = async (req, res) => {
             librerias = await libreriaService.getlibrerias();
         
         }
-
         res.status(200).json(librerias);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -61,4 +60,15 @@ const updatelibreria = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
-module.exports = {createlibreria, getlibrerias, getlibreria, updatelibreria}
+
+const deletelibreria = async (req, res) => {
+    const idlibreria = req.params.idlibreria;
+    try {
+        const libreria = await libreriaService.deletelibreria(idlibreria);
+        
+        res.status(200).json(libreria);   
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+module.exports = {createlibreria, getlibrerias, getlibreria, updatelibreria, deletelibreria}

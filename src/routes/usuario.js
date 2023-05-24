@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
-//const libroService = require('../services/libro');
 const {usuarioController} = require ("../controllers");
+const { authMiddleware,} = require("../middleware/authentication-jwt");
 
 router.get ("/", usuarioController.getUsuarios);
 
 router.get ("/:idUsuario", usuarioController.getUsuario)
 
-router.post ("/", usuarioController.createUsuario);
+router.post ("/",authMiddleware, usuarioController.createUsuario);
 
-router.put("/:idLibro", usuarioController.updateUsuario);
+router.put("/:idUsuario", authMiddleware, usuarioController.updateUsuario);
+
+router.delete("/:idUsuario", authMiddleware, usuarioController.deleteUsuario);
 
 module.exports = router;

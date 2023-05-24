@@ -2,15 +2,15 @@ const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/dbConfig");
 const Libreria = sequelize.define('Librerias',{
     name: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     location: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     telefono: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING,
         allowNull: false, 
     },
 },

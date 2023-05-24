@@ -1,13 +1,9 @@
 const { Op } = require("sequelize");
-const { Libreria, Libro } = require("../models");
+const { Libreria,} = require("../models");
 
 const createlibreria = async (atributoslibreria) => {
     try {
         const newlibreria = await Libreria.create(atributoslibreria);
-        // const libro = await Libro.create({ LibreriaId: newlibreria.id , isbn: "123", 
-        //     titulo: "hola", 
-        //     autor: "lu", 
-        //     year: "1800"});
         return newlibreria;
     }catch (error) {
     throw error;

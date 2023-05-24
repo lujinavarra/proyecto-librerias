@@ -1,24 +1,31 @@
 const services = require('../services')
-const {libroService} = services;
+const {libroService, libreriaService} = services;
+
 
 const createLibro = async (req, res) => {
     const { isbn, titulo, autor, year, library_id} = req.body;
-    try {
-        const newLibro = await libroService.createLibro({
-            isbn, 
-            titulo, 
-            autor, 
-            year,
-            library_id
-        });
-        res.status(201).json(newLibro);
+    try { //verificamos que la libreria existe para crear el libro
+        const libreria = await libreriaService.getlibreria(library_id);
+        if (libreria){
+            const newLibro = await libroService.createLibro({
+                isbn, 
+                titulo, 
+                autor, 
+                year,
+                library_id
+            });
+            res.status(201).json(newLibro);
+        } else{
+            throw new Error('No existe la libreria');
+        }
+        
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 }
 
 const getLibros = async (req, res) => {
-    const { titulo, autor, isbn } = req.query;
+    const { titulo, autor, isbn, library_id} = req.query;
     try {
         let libros;
         if (Object.keys(req.query).length !== 0) {
@@ -26,6 +33,7 @@ const getLibros = async (req, res) => {
                 ...(titulo && { titulo }),
                 ...(autor && { autor }),
                 ...(isbn && {isbn}),
+                ...(library_id && {library_id})
         }); // Esto sólo va a agregar los campos si vinieron en la query
         } else {
             libros = await libroService.getLibros();
@@ -50,14 +58,14 @@ const getLibro = async (req, res) => {
 
 const updateLibro = async (req, res) => {
     const idLibro = req.params.idLibro;
-    const { isbn, titulo, autor, year, library} = req.body;
+    const { isbn, titulo, autor, year, library_id} = req.body;
     try {
         const newLibro = await libroService.updateLibro(idLibro, {
             isbn, 
             titulo, 
             autor, 
             year, 
-            library
+            library_id
     });
         res.status(200).json(newLibro);
     } catch (error) {
@@ -67,11 +75,7 @@ const updateLibro = async (req, res) => {
 
 const deleteLibro = async (req, res) => {
     const idLibro = req.params.idLibro;
-    // const {eliminado} = req.body;
     try {
-        // const libroEliminado = await libroService.updateLibro(idLibro, {
-        //     eliminado
-        // });
         const libro = await libroService.deleteLibro(idLibro);
         res.status(200).json(libro);
     } catch (error) {
