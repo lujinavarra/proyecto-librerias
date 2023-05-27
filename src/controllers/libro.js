@@ -1,8 +1,13 @@
 const services = require('../services')
 const {libroService, libreriaService} = services;
-
+const { validationResult } = require('express-validator');
 
 const createLibro = async (req, res) => {
+const result = validationResult(req)
+    if(!result.isEmpty()){
+        console.log(result)
+        return  res.status(400).send({errors: result.array})
+    }
     const { isbn, titulo, autor, year, library_id} = req.body;
     try { //verificamos que la libreria existe para crear el libro
         const libreria = await libreriaService.getlibreria(library_id);
@@ -58,6 +63,11 @@ const getLibro = async (req, res) => {
 
 const updateLibro = async (req, res) => {
     const idLibro = req.params.idLibro;
+    const result = validationResult(req)
+    if(!result.isEmpty()){
+        console.log(result)
+        return  res.status(400).send({errors: result.array})
+    }
     const { isbn, titulo, autor, year, library_id} = req.body;
     try {
         const newLibro = await libroService.updateLibro(idLibro, {

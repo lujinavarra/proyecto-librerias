@@ -21,6 +21,4 @@ const deletelibreria = async (id) => {
     return await libreriaProvider.deletelibreria(id);
 };
 
-const querylibreria = (libreria) => {};
-
 module.exports = { getlibreria, getlibrerias, createlibreria, updatelibreria, deletelibreria };

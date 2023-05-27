@@ -1,0 +1,24 @@
+Proyecto integrador de NODEJS.
+Autores: 
+MaríaLuján Navarra
+Leansdro Hernán Ibarra
+
+Se realizó una API rest que realiza CRUD de los modelos Libreria, Libro, Usuario.
+Para desarrollar dicha aplicación se utilizó un entorno de ejecución de código abierto y multiplataforma "NODE". 
+Para comenzar a crear el proycto luego de tener instalado node, desde la terminal ubicados en la carpetava contener el proyecto 
+ejecutamos el comando "nmp init", el cual nos da una estructura del proyecto.
+Lego se instalaron las dependencias necesarias para trabajar. Entre ellas, express, passport, jsonwebtoken,
+passport-jwt, sequelize, sqlite3. Estas dependencias permiten poder realizar un sistema escalable, seguro, 
+fácil de manejar el código, almacenar datos entre otras funciones.
+El diseño de la API es Modelo, vista, controlador. Permite tener varias capas en distintos niveles para diversas situaciones.
+En este caso, se utilizaron las siguientes capas: 
+models:  se crearon las tablas.
+router: definición de las distintas rutas
+provides: es aquí donde las fuciones entran en contacto directamente con la BD
+middleware: en dicha carpeta la función principal es manejar la seguridad del sistema, analizar si el usuario 
+que es "admin" si cumple con los requisitos para btener un token, que persmisos tiene o no, y en base a eso lo 
+deja logearse o no le da permiso.
+controller: en esta carpeta se encarga ecapturar datos ingresados por el usario, validarlos, e informar si 
+ocurrió algun error, caso contrario ejecuta la acción de la función que fue llamada
+service: traemos todas las funciones que fueron creadas en provides y luego las exportamos para ser utilizadas desde 
+donde se llamen a las mismas

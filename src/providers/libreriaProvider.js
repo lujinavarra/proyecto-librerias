@@ -12,7 +12,8 @@ const createlibreria = async (atributoslibreria) => {
 
 const getlibreria = async (id) => {
     try {
-        const libreria = await Libreria.findByPk(id, { include: [{ all: true }] });
+        const libreria = await Libreria.findByPk(id, {paranoid: false});
+        //const libreria = await Libreria.findByPk(id, { include: [{ all: true }] });//si uno quiere ver los registros eliminados eliminamos esta linea
         if (libreria) {
             return libreria;
         } else {
@@ -46,10 +47,10 @@ const getlibrerias = async (condiciones) => {
 const updatelibreria = async (idlibreria, atributos) => {
     try {
         await getlibreria(idlibreria);
-        const [numRowsUpdated] = await Libreria.update(atributos, {
+        const [filasActualizadas] = await Libreria.update(atributos, {
         where: { id: idlibreria },
         });
-        console.log(`Se actualizaron ${numRowsUpdated} filas en la DB`);
+        console.log(`Se actualizaron ${filasActualizadas} filas en la DB`);
         return Libreria.findByPk(idlibreria);
     } catch (error) {
         throw error;
@@ -58,6 +59,7 @@ const updatelibreria = async (idlibreria, atributos) => {
 
 const deletelibreria = async (idlibreria) => {
     try {
+        await getlibreria(idlibreria);
         return Libreria.destroy({ where: { id: idlibreria } });
     } catch (error) {
         throw error;
