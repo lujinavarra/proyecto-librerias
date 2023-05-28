@@ -12,9 +12,9 @@ const createUsuario = async (atributosUsuario) => {
 
 const getUsuario = async (id) => {
     try {
-        //User.findByPk(id, {attributes: {exclude: ['password']}})
-        //const usuario = await Usuario.findByPk(id, { include: [{ all: true }] });
-        const usuario = await Usuario.findByPk(id, {attributes: {exclude: ['password']}})
+        const usuario = await Usuario.findByPk(id, { include: [{ all: true }] });
+        // en el caso de que la tabla tenga otra configuración podemos excluir el password como muestra abajo
+        //const usuario = await Usuario.findByPk(id, {attributes: {exclude: ['password']}})
         if (usuario) {
             return usuario;
         } else {
@@ -30,9 +30,9 @@ const getUsuarios = async (condiciones) => {
         let opciones = { include: [{ all: true }] };
         if (condiciones) {
             opciones = { ...opciones, where: { [Op.or]: condiciones } };
-        }
-        const usuarios = await Usuario.findAll({attributes: {exclude: ['password']}});
-
+        } // opciones tiene username y/o role, capturado en la url. Op nos permite buscar por distintos operadores logicos
+        const usuarios = await Usuario.findAll(opciones);
+        
         if (usuarios) {
             return usuarios;
         } else {
@@ -60,6 +60,7 @@ const updateUsuario = async (idUsuario, atributos) => {
 
 const deleteUsuario = async (idUsuario) => {
     try {
+        await getUsuario(idUsuario);
         return Usuario.destroy({ where: { id: idUsuario } });
     } catch (error) {
         throw error;

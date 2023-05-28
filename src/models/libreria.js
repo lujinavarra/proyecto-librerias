@@ -12,7 +12,7 @@ const Libreria = sequelize.define('Librerias',{
     },
     telefono: {
         type: DataTypes.STRING,
-        allowNull: false, 
+        allowNull: true, 
     },
 },
 {

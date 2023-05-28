@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Libro, Libreria } = require("../models");
+const { Libro } = require("../models");
 
 const createLibro = async (atributosLibro) => {
     try {
@@ -12,7 +12,8 @@ const createLibro = async (atributosLibro) => {
 
 const getLibro = async (id) => {
     try {
-        //const libro = await Libro.findByPk(id, {paranoid: false}); //si uno quiere ver los registros eliminados eliminamos esta linea
+        //const libro = await Libro.findByPk(id, {paranoid: false}); 
+        //si uno quiere ver los registros eliminados colocamos el paranoid en falso
         const libro = await Libro.findByPk(id, { include: [{ all: true }] });
         if (libro) {
             return libro;

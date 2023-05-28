@@ -33,7 +33,8 @@ const getLibros = async (req, res) => {
     const { titulo, autor, isbn, library_id} = req.query;
     try {
         let libros;
-        if (Object.keys(req.query).length !== 0) {
+        if (titulo !== undefined || autor !==undefined  || isbn!== undefined 
+        || library_id!==undefined){
             libros = await libroService.getLibros({
                 ...(titulo && { titulo }),
                 ...(autor && { autor }),
@@ -50,6 +51,7 @@ const getLibros = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
+
 
 const getLibro = async (req, res) => {
     const idLibro = req.params.idLibro;

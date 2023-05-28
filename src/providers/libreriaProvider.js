@@ -12,8 +12,9 @@ const createlibreria = async (atributoslibreria) => {
 
 const getlibreria = async (id) => {
     try {
-        const libreria = await Libreria.findByPk(id, {paranoid: false});
-        //const libreria = await Libreria.findByPk(id, { include: [{ all: true }] });//si uno quiere ver los registros eliminados eliminamos esta linea
+        //const libreria = await Libreria.findByPk(id, {paranoid: false}); 
+        //si uno quiere ver los registros eliminados ponemos el paranoid en falso y eso muestra los qu están eliminados
+        const libreria = await Libreria.findByPk(id, { include: [{ all: true }] });
         if (libreria) {
             return libreria;
         } else {

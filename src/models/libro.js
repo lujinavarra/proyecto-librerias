@@ -33,8 +33,8 @@ const Libro = sequelize.define('Libros',{
     timestamps: true, //el paranoid requiere timestamps en true
 },
 );
-//{foreignKey: 'library_id' }, {onDelete: 'CASCADE', hooks: true}
+
 Libreria.hasMany(Libro, {foreignKey: 'library_id' }, {onDelete: 'CASCADE', hooks: true});
-Libro.belongsTo(Libreria,{foreignKey: 'library_id' });
+Libro.belongsTo(Libreria,{foreignKey: 'library_id' }, {onDelete: 'CASCADE', hooks: true});
 
 module.exports = Libro;

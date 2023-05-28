@@ -34,6 +34,11 @@ const Usuario = sequelize.define('Usuarios',{
     createdAt: 'created_at',
     updatedAt: 'updated_at',
     deletedAt: 'deletedAt',
+    defaultScope: {
+        attributes: {
+            exclude: ['password']
+        },
+    },
     paranoid: true, //este método realiza la eliminación lógica para que el metodo destroy lo marque como eliminado
     timestamps: true, //el paranoid requiere timestamps en true
 },

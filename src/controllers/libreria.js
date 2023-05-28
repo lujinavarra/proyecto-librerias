@@ -30,7 +30,6 @@ const getlibrerias = async (req, res) => {
         if(name !== undefined){
             librerias = await libreriaService.getlibrerias({
                 ...(name && { name }),
-            
             });
         }else{
             librerias = await libreriaService.getlibrerias();
@@ -44,11 +43,6 @@ const getlibrerias = async (req, res) => {
 }
 
 const getlibreria = async (req, res) => {
-    const result = validationResult(req)
-    if(result.isEmpty()){
-        console.log(result)
-        return  res.status(400).send({errors: result.array})
-    }
     const idlibreria = req.params.idlibreria;
     try {
         const libreria = await libreriaService.getlibreria(idlibreria);
