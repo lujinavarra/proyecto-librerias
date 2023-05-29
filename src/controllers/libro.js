@@ -1,9 +1,9 @@
 const services = require('../services')
-const {libroService, libreriaService} = services;
+const { libroService, libreriaService } = services;
 const { validationResult } = require('express-validator');
 
 const createLibro = async (req, res) => {
-const result = validationResult(req)
+    const result = validationResult(req)
     if(!result.isEmpty()){
         console.log(result)
         return  res.status(400).send({errors: result.array})
@@ -40,12 +40,11 @@ const getLibros = async (req, res) => {
                 ...(autor && { autor }),
                 ...(isbn && {isbn}),
                 ...(library_id && {library_id})
-        }); // Esto sólo va a agregar los campos si vinieron en la query
+        }); // Solo se agregan los campos si existen en la query
         } else {
             libros = await libroService.getLibros();
         
         }
-
         res.status(200).json(libros);
     } catch (error) {
         res.status(500).json({ message: error.message });

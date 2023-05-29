@@ -1,7 +1,6 @@
 const services = require('../services')
-const { libreriaService, libroService } = services;
+const { libreriaService } = services;
 const { validationResult } = require('express-validator');
-//const { NUMBER } = require('sequelize');
 
 const createlibreria = async (req, res) => {
     const result = validationResult(req)
@@ -23,7 +22,6 @@ const createlibreria = async (req, res) => {
 }
 
 const getlibrerias = async (req, res) => {
-    
     const { name } = req.query;
     try {
         let librerias;
@@ -36,7 +34,6 @@ const getlibrerias = async (req, res) => {
         }
         res.status(200).json(librerias);
 
-        
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -81,4 +78,5 @@ const deletelibreria = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
 module.exports = {createlibreria, getlibrerias, getlibreria, updatelibreria, deletelibreria}

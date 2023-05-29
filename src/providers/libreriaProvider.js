@@ -39,7 +39,7 @@ const getlibrerias = async (condiciones) => {
         throw new Error(
             "No se encontraron librerias con estas condiciones de busqueda"
         );
-    }
+        }
     } catch (error) {
         throw error;
     }

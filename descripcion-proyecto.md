@@ -13,7 +13,7 @@ En este caso, se estructuró el proyecto de la siguiente forma:
         - Firstname, lastname, role, phone: campos para tener información sobre el usuario
         - Password, para que el usuario proteja su sesión. Esta configurado para que al ejecutar una búsqueda de los usuarios esta no sea visible.
 Las 3 tablas fueron armadas de tal forma que al eliminar un registro este se borre de forma lógica, y continúe existiendo en la base de datos (con posibilidad de recuperarlo si es necesario). También se estructuró para efectuar la eliminación en cascada de las tablas relacionadas.
-Para poder comenzar a utilizar el sistema es necesario loguearse con Username y Password "admin" con el fin de que nos genere el token, y poder cargar los primeros usuarios, tanto como libros y librerias. Solo el usuario admin podrá realizar la eliminación de datos, mientras que los otros usuarios pueden acceder al resto de las funciones.
+Para poder comenzar a utilizar el sistema es necesario loguearse con Username y Password "admin" con el fin de que nos genere el token, y poder cargar los primeros usuarios, tanto como libros y librerias. Solo el usuario Admin podrá realizar la eliminación de datos, mientras que los otros usuarios pueden acceder al resto de las funciones.
 - Router: definición de las distintas rutas. Para las rutas que se ingresan datos se implementaron validaciones previas a la llegada de estos a la BD, con el fin de que no lleguen datos corruptos.
 - Providers: es aquí donde las funciones entran en contacto directamente con la BD. Por medio de ellas se pueden realizar el CRUD de las 3 tablas.
 - Middleware: la función principal es manejar la seguridad del sistema, analizar si el usuario cumple con los requisitos para obtener un token, que permisos tiene o no, y en base a eso lo deja loguearse, o no le da permiso.
@@ -21,7 +21,8 @@ Para poder comenzar a utilizar el sistema es necesario loguearse con Username y 
 - Service: traemos todas las funciones que fueron creadas en Providers y luego las exportamos para ser utilizadas desde donde se llamen a las mismas.
 
 ## Autores
-
+- María Luján Navarra
+- Leandro Hernan Ibarra
 - [@lhibarra](https://github.com/lhibarra)
 - [@lujinavarra](https://github.com/lujinavarra)
 
@@ -35,7 +36,6 @@ Para ejecutar el proyecto se debe ejecutar el comando
 
 
 ## Herramientas Utilizadas
-
 
 
 **Server:** Node, Express, Passport, Body-Parser, Jsonwebtoken, Passport-jwt, Sequelize, Sqlite3

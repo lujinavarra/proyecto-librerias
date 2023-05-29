@@ -36,7 +36,7 @@ const Usuario = sequelize.define('Usuarios',{
     deletedAt: 'deletedAt',
     defaultScope: {
         attributes: {
-            exclude: ['password']
+            exclude: ['password']//para no mostar el valor de la pass cuando se realiza una consulta
         },
     },
     paranoid: true, //este método realiza la eliminación lógica para que el metodo destroy lo marque como eliminado

@@ -39,7 +39,7 @@ const getLibros = async (condiciones) => {
         throw new Error(
             "No se encontraron libros con estas condiciones de busqueda"
         );
-    }
+        }
     } catch (error) {
         throw error;
     }
